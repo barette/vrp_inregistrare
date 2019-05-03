@@ -1,8 +1,9 @@
 --[[
 	SCRIPTER: Mihail#5138
 --]]
-RegisterNetEvent('scriptermihail')
-AddEventHandler('scriptermihail', function()
+
+RegisterNetEvent('inregistreaza')
+AddEventHandler('inregistreaza', function()
 	introServer()
 end)
 function introServer()
@@ -18,6 +19,8 @@ function introServer()
 		queue = "global"
 	})
 	Citizen.Wait(20000)
+	SetEntityVisible(GetPlayerPed(-1), false)
+	FreezeEntityPosition(GetPlayerPed(-1), true)
 	SetEntityCoords(GetPlayerPed(-1),-293.80242919922,-517.28063964844,82.515983581543,true, false, false,true)
 	TriggerEvent("pNotify:SendNotification",{
 		text = "<b style='color:#1E90FF'>Drumuri si poduri</b> <br /><br />Conform legii intr-o zona rezidentiala, de trafic intens, viteza automobilelor nu trebuie sa depaseasca 50 KM/H<br /><br />In zone urbane, cu trafic obisnuit, viteza ideala nu depaseste 80KM/H <br /><br />In cazul autostrazilor, legea doreste ca automobilele sa nu depaseasca viteza de 130KM/H<br />",
@@ -27,6 +30,8 @@ function introServer()
 		queue = "global"
 	})
 	Citizen.Wait(11500)
+	SetEntityVisible(GetPlayerPed(-1), false)
+	FreezeEntityPosition(GetPlayerPed(-1), true)
 	SetEntityCoords(GetPlayerPed(-1),393.24786376953,-943.24426269531,52.790142059326,true, false, false,true)
 	TriggerEvent("pNotify:SendNotification",{
 		text = "<b style='color:#1E90FF'>Politia</b> <br/><br/> LSPD, organizatie guvernamentala pentru aplicarea legii, exercita atributii privind prevenirea, descoperirea si cercetarea in conditiile legii a tuturor infractiunilor.<br/> <br/><br/>  FBI: agentia federala de investigatii a crimelor si nu numai.<br/>",
@@ -36,6 +41,8 @@ function introServer()
 		queue = "global"
 	})
 	Citizen.Wait(11500)
+	SetEntityVisible(GetPlayerPed(-1), false)
+	FreezeEntityPosition(GetPlayerPed(-1), true)
 	SetEntityCoords(GetPlayerPed(-1),188.59785461426,193.18286132813,133.37438964844,true, false, false,true)
 	TriggerEvent("pNotify:SendNotification",{
 		text = "<b style='color:#1E90FF'>Banca</b> <br /><br />Banca este cel mai sigur loc unde ai putea sa pastrezi banii in cazul atacurilor sau in cazul in care aveti de-a face cu mafiile!. <br />",
@@ -45,10 +52,10 @@ function introServer()
 		queue = "global"
 	})				
 	Citizen.Wait(11500)		
-	TriggerServerEvent('nodaicumihail')
+	TriggerServerEvent('insereaza')
 end
-RegisterNetEvent('bymihail')
-AddEventHandler('bymihail', function(user_id,nume,prenume,varsta)
+RegisterNetEvent('inregistrat')
+AddEventHandler('inregistrat', function(user_id,nume,prenume,varsta)
 	user_id = user_id
 	nume = nume
 	prenume = prenume
@@ -56,6 +63,8 @@ AddEventHandler('bymihail', function(user_id,nume,prenume,varsta)
 	SetEntityCoords(GetPlayerPed(-1),-544.95623779296,-204.4200744629,38.215145111084,true, false, false,true)
 	SetEntityVisible(GetPlayerPed(-1), true)
 	FreezeEntityPosition(GetPlayerPed(-1), false)
+
+
 	Citizen.CreateThread(function()
 		function Initialize(scaleform)
 			local scaleform = RequestScaleformMovie(scaleform)
@@ -76,10 +85,14 @@ AddEventHandler('bymihail', function(user_id,nume,prenume,varsta)
 			end)
 			return scaleform
 		end
+	
 		scaleform = Initialize("mp_big_message_freemode")
+		
 		while true do
 			Citizen.Wait(0)
 			DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255, 0)
 		end
+		
 	end)
+
 end)
